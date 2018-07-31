@@ -1,0 +1,72 @@
+/*-------------------------------------------------------+
+| SYSTOPIA Recently viewed items extension               |
+| Copyright (C) 2018 SYSTOPIA                            |
+| Author: J. Schuppe (schuppe@systopia.de)               |
++--------------------------------------------------------+
+| This program is released as free software under the    |
+| Affero GPL license. You can redistribute it and/or     |
+| modify it under the terms of this license which you    |
+| can read by viewing the included agpl.txt or online    |
+| at www.gnu.org/licenses/agpl.html. Removal of this     |
+| copyright header is strictly prohibited without        |
+| written permission from the original author(s).        |
++-------------------------------------------------------*/
+.menu-item .crm-icon {
+  background-image: none;
+  text-indent: 0;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+}
+.menu-item .crm-icon::before {
+  text-indent: 0
+}
+.menu-item .crm-icon {
+  /* ICON_SPRITE_URL will be replaced using CiviCRM's asset service. */
+  background-image: url(ICON_SPRITE_URL);
+  margin: 2px 4px 0 0;
+  text-indent: -10000px;
+  /* for accessibility reason, put the name of the type/subtype in the icon div (it will be hidden and replaced by the icon) */
+}
+.menu-item .Group-icon {
+  background-position: -16px 0;
+}
+.menu-item .Individual-icon,
+.menu-item .Individual-subtype-icon {
+  background-position: 0 -48px;
+}
+.menu-item .Household-icon,
+.menu-item .Household-subtype-icon {
+  background-position: -32px -48px;
+}
+.menu-item .Organization-icon,
+.menu-item .Organization-subtype-icon {
+  background-position: -48px -48px;
+}
+.menu-item .Activity-icon {
+  background-position: -64px 0;
+}
+.menu-item .Case-icon {
+  background-position: -80px 0;
+}
+.menu-item .Grant-icon {
+  background-position: 0 -16px;
+}
+.menu-item .Contribution-icon {
+  background-position: -16px -16px;
+}
+.menu-item .Pledge-icon {
+  background-position: -16px -16px;
+}
+.menu-item .Membership-icon {
+  background-position: -32px -16px;
+}
+.menu-item .Participant-icon {
+  background-position: 0 -32px;
+}
+.menu-item .Note-icon {
+  background-position: -16px -32px;
+}
+.menu-item .Relationship-icon {
+  background-position: -32px -32px;
+}

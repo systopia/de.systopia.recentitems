@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<extension key="de.systopia.recentitems" type="module">
+  <file>recentitems</file>
+  <name>Recently viewed items menu</name>
+  <description>Adds the "Recently viewed" links as a sub menu into the navigation menu.</description>
+  <license>AGPL-3.0</license>
+  <maintainer>
+    <author>SYSTOPIA</author>
+    <email>info@systopia.de</email>
+  </maintainer>
+  <urls>
+    <url desc="Main Extension Page">http://FIXME</url>
+    <url desc="Documentation">http://FIXME</url>
+    <url desc="Support">http://FIXME</url>
+    <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
+  </urls>
+  <releaseDate></releaseDate>
+  <version>0.1-dev</version>
+  <develStage>dev</develStage>
+  <compatibility>
+    <ver>4.7</ver>
+  </compatibility>
+  <comments>As Shoreditch is best used with a theme without sidebars, the
+    "Recently viewed" block is not really useful anymore. This extension adds
+    those links in a sub menu within CiviCRM's navigation menu.
+  </comments>
+  <civix>
+    <namespace>CRM/Recentitems</namespace>
+  </civix>
+</extension>
