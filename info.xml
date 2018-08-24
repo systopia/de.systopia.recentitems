@@ -9,13 +9,13 @@
     <email>info@systopia.de</email>
   </maintainer>
   <urls>
-    <url desc="Main Extension Page">http://FIXME</url>
-    <url desc="Documentation">http://FIXME</url>
-    <url desc="Support">http://FIXME</url>
+    <url desc="Main Extension Page">https://github.com/systopia/de.systopia.recentitems</url>
+    <url desc="Documentation">https://github.com/systopia/de.systopia.recentitems/blob/master/README.md</url>
+    <url desc="Support">https://github.com/systopia/de.systopia.recentitems/issues</url>
     <url desc="Licensing">http://www.gnu.org/licenses/agpl-3.0.html</url>
   </urls>
-  <releaseDate></releaseDate>
-  <version>0.1-dev</version>
+  <releaseDate>2018-08-24</releaseDate>
+  <version>0.1</version>
   <develStage>dev</develStage>
   <compatibility>
     <ver>4.7</ver>
