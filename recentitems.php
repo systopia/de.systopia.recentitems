@@ -142,56 +142,18 @@ function recentitems_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
  * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_navigationMenu
  */
 function recentitems_civicrm_navigationMenu(&$menu) {
-  // Find the "Home" menu item for retrieving its weight.
-  $menu_item_search = array(
-    'name' => 'Home',
-  );
-  $menu_items = array();
-  CRM_Core_BAO_Navigation::retrieve($menu_item_search, $menu_items);
+  // Insert the "Recent items" menu item.
+  CRM_Recentitems_Utils::buildMenuItem($menu);
 
-  _recentitems_civix_insert_navigation_menu($menu, NULL, array(
-    'label' => E::ts('Recent'),
-    'name' => 'recently_viewed',
+  // Do not build the recent items sub menu here, only include a "Loading"
+  // indicator, which will be replaced with the actual sub menu via Ajax.
+  _recentitems_civix_insert_navigation_menu($menu, 'recently_viewed', array(
+    'label' => E::ts('Loading ...'),
+    'name' => 'recently_viewed_loading',
+    'icon' => 'fa fa-spinner',
     'navID' => _recentitems_navhelper_create_unique_nav_id($menu),
-    // Place directly after the "Home" item, using its weight.
-    // See https://github.com/civicrm/civicrm-core/pull/11772 for weight.
-    'weight' => (isset($menu_items['weight']) ? $menu_items['weight'] : 0),
-    'icon' => 'fa fa-clock-o',
+    'class' => 'crm-container',
   ));
-
-  foreach (CRM_Utils_Recent::get() as $i => $item) {
-    _recentitems_civix_insert_navigation_menu($menu, 'recently_viewed', array(
-      'label' => $item['title'],
-      'url' => ltrim($item['url'], '/'),
-      'name' => 'recently_viewed_' . $i,
-      'icon' => ($item['subtype'] ?: $item['type']) . '-icon icon crm-icon',
-      'navID' => _recentitems_navhelper_create_unique_nav_id($menu),
-      'class' => 'crm-container',
-    ));
-    _recentitems_civix_insert_navigation_menu($menu, 'recently_viewed/recently_viewed_' . $i, array(
-      'label' => E::ts('View'),
-      'url' => ltrim($item['url'], '/'),
-      'name' => 'recently_viewed_' . $i . '_view',
-      'navID' => _recentitems_navhelper_create_unique_nav_id($menu),
-    ));
-
-    if ($item['edit_url']) {
-      _recentitems_civix_insert_navigation_menu($menu, 'recently_viewed/recently_viewed_' . $i, array(
-        'label' => E::ts('Edit'),
-        'url' => ltrim($item['edit_url'], '/'),
-        'name' => 'recently_viewed_' . $i . '_edit',
-        'navID' => _recentitems_navhelper_create_unique_nav_id($menu),
-      ));
-    }
-    if ($item['delete_url']) {
-      _recentitems_civix_insert_navigation_menu($menu, 'recently_viewed/recently_viewed_' . $i, array(
-        'label' => E::ts('Delete'),
-        'url' => ltrim($item['delete_url'], '/'),
-        'name' => 'recently_viewed_' . $i . '_delete',
-        'navID' => _recentitems_navhelper_create_unique_nav_id($menu),
-      ));
-    }
-  }
 
   _recentitems_civix_navigationMenu($menu);
 }
@@ -224,15 +186,15 @@ function _recentitems_navhelper_get_max_nav_id($menu) {
   return $max_id;
 }
 
-///**
-// * Hook implementation: Inject JS code adjusting summary view
-// */
-//function recentitems_civicrm_pageRun(&$page) {
-//  CRM_Core_Region::instance('page-header')->add(array(
-//    'type' => 'styleUrl',
-//    'styleUrl' => E::url('css/recentitems.css'),
-//  ));
-//}
+/**
+ * Hook implementation: Inject JS code adjusting summary view
+ */
+function recentitems_civicrm_pageRun(&$page) {
+  CRM_Core_Region::instance('page-header')->add(array(
+    'type' => 'scriptUrl',
+    'scriptUrl' => E::url('js/recentitems.js'),
+  ));
+}
 
 /**
  * Implements hook_civicrm_buildAsset().

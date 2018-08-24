@@ -11,6 +11,10 @@
 | copyright header is strictly prohibited without        |
 | written permission from the original author(s).        |
 +-------------------------------------------------------*/
+#civicrm-menu i,
+#root-menu-div i {
+  margin-right: 5px;
+}
 .menu-item .crm-icon {
   background-image: none;
   text-indent: 0;
