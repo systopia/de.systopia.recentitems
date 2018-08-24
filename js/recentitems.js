@@ -15,16 +15,18 @@
 (function($) {
   $(document).ready(function() {
     var $recentMenuItem = $('#civicrm-menu').find('.menumain.crm-Recent');
-    var $recentSubMenu = $recentMenuItem.find('> ul');
 
     var recentItems = CRM.api3('RecentItems', 'get')
       .done(function(result) {
-        var $newSubMenu = $(result.values).find('> ul');
-        $recentSubMenu.replaceWith($newSubMenu);
+        var $newMenuItem= $(result.values);
+        $recentMenuItem.replaceWith($newMenuItem);
 
-        // Re-initialise the navigation menu.
+        // ReInitialise navigation menu behavior for the new menu item.
         // Copied from CiviCRM's /templates/CRM/common/navigation.js.tpl
-        $('#civicrm-menu').menuBar({arrowSrc: CRM.config.resourceBase + 'packages/jquery/css/images/arrow.png'});
+        // TODO: This does not make the "Recent items" menu item part of the
+        // menu, which causes some odd behavior whith mouseOver on open sub
+        // menus.
+        $newMenuItem.menuBar({arrowSrc: CRM.config.resourceBase + 'packages/jquery/css/images/arrow.png'});
 
         // Replace icons with shoreditch's replacement.
         // Copied from shoreditch's /js/crm-ui.js
