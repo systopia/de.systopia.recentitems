@@ -190,10 +190,10 @@ function _recentitems_navhelper_get_max_nav_id($menu) {
  * Hook implementation: Inject JS code adjusting summary view
  */
 function recentitems_civicrm_pageRun(&$page) {
-  CRM_Core_Region::instance('page-header')->add(array(
-    'type' => 'scriptUrl',
-    'scriptUrl' => E::url('js/recentitems.js'),
-  ));
+//  CRM_Core_Region::instance('page-header')->add(array(
+//    'type' => 'scriptUrl',
+//    'scriptUrl' => E::url('js/recentitems.js'),
+//  ));
 }
 
 /**
@@ -240,6 +240,8 @@ function recentitems_civicrm_coreResourceList(&$list, $region) {
 
   // load the processed style on the page
   CRM_Core_Resources::singleton()->addStyleUrl($url);
+
+  Civi::resources()->addScriptFile(E::LONG_NAME, 'js/recentitems.js', 0, $region);
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---

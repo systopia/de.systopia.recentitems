@@ -31,6 +31,7 @@
         // Replace icons with shoreditch's replacement.
         // Copied from shoreditch's /js/crm-ui.js
         // TODO: Find a method to do this without copying code.
+        // TODO: Only do this when shoreditch is active and custom CSS URL is set.
         $('#root-menu-div .menu-item-arrow').each(function ($element) {
           var $arrow = $(this);
 
