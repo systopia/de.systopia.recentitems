@@ -24,20 +24,21 @@
         // ReInitialise navigation menu behavior for the new menu item.
         // Copied from CiviCRM's /templates/CRM/common/navigation.js.tpl
         // TODO: This does not make the "Recent items" menu item part of the
-        // menu, which causes some odd behavior whith mouseOver on open sub
+        // menu, which causes some odd behavior with mouseOver on open sub
         // menus.
         $newMenuItem.menuBar({arrowSrc: CRM.config.resourceBase + 'packages/jquery/css/images/arrow.png'});
 
         // Replace icons with shoreditch's replacement.
         // Copied from shoreditch's /js/crm-ui.js
         // TODO: Find a method to do this without copying code.
-        // TODO: Only do this when shoreditch is active and custom CSS URL is set.
-        $('#root-menu-div .menu-item-arrow').each(function ($element) {
-          var $arrow = $(this);
+        if (CRM.recentitems.shoreditch) {
+          $('#root-menu-div .menu-item-arrow').each(function ($element) {
+            var $arrow = $(this);
 
-          $arrow.before('<i class="fa fa-caret-right menu-item-arrow"></i>');
-          $arrow.remove();
-        });
+            $arrow.before('<i class="fa fa-caret-right menu-item-arrow"></i>');
+            $arrow.remove();
+          });
+        }
 
       });
   });

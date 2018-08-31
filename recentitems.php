@@ -241,7 +241,13 @@ function recentitems_civicrm_coreResourceList(&$list, $region) {
   // load the processed style on the page
   CRM_Core_Resources::singleton()->addStyleUrl($url);
 
+  // Add JavaScript file on every page.
   Civi::resources()->addScriptFile(E::LONG_NAME, 'js/recentitems.js', 0, $region);
+
+  // Add a setting for whether shoreditch styles are active.
+  $custom_css_url = CRM_Core_BAO_Setting::getItem(NULL, 'customCSSURL');
+  $shoreditch_active = (strpos($custom_css_url, 'org.civicrm.shoreditch/css/custom-civicrm.css') !== FALSE);
+  Civi::resources()->addSetting(array('recentitems' => array('shoreditch' => $shoreditch_active)));
 }
 
 // --- Functions below this ship commented out. Uncomment as required. ---
