@@ -250,6 +250,14 @@ function recentitems_civicrm_coreResourceList(&$list, $region) {
   Civi::resources()->addSetting(array('recentitems' => array('shoreditch' => $shoreditch_active)));
 }
 
+/**
+ * Implements hook_civicrm_alterAPIPermissions().
+ */
+function recentitems_civicrm_alterAPIPermissions($entity, $action, &$params, &$permissions)
+{
+  $permissions['recent_items']['get'] = array('access CiviCRM');
+}
+
 // --- Functions below this ship commented out. Uncomment as required. ---
 
 /**
