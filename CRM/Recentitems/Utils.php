@@ -37,17 +37,20 @@ class CRM_Recentitems_Utils {
    * @param $menu
    */
   public static function buildSubMenu(&$menu) {
+    $base_url = CRM_Utils_System::baseURL();
+    $parsed = parse_url($base_url);
+    $base_url = substr($base_url, 0, strrpos($base_url, $parsed['path']));
     foreach (CRM_Utils_Recent::get() as $i => $item) {
       _recentitems_civix_insert_navigation_menu($menu, 'recently_viewed', array(
         'label' => $item['title'],
-        'url' => ltrim($item['url'], '/'),
+        'url' => CRM_Utils_System::relativeURL($base_url . $item['url']),
         'name' => 'recently_viewed_' . $i,
         'icon' => ($item['subtype'] ?: $item['type']) . '-icon icon crm-icon',
         'navID' => _recentitems_navhelper_create_unique_nav_id($menu),
       ));
       _recentitems_civix_insert_navigation_menu($menu, 'recently_viewed/recently_viewed_' . $i, array(
         'label' => E::ts('View'),
-        'url' => ltrim($item['url'], '/'),
+        'url' => CRM_Utils_System::relativeURL($base_url . $item['url']),
         'name' => 'recently_viewed_' . $i . '_view',
         'icon' => 'fa fa-eye',
         'navID' => _recentitems_navhelper_create_unique_nav_id($menu),
@@ -56,7 +59,7 @@ class CRM_Recentitems_Utils {
       if ($item['edit_url']) {
         _recentitems_civix_insert_navigation_menu($menu, 'recently_viewed/recently_viewed_' . $i, array(
           'label' => E::ts('Edit'),
-          'url' => ltrim($item['edit_url'], '/'),
+          'url' => CRM_Utils_System::relativeURL($base_url . $item['edit_url']),
           'name' => 'recently_viewed_' . $i . '_edit',
           'icon' => 'fa fa-edit',
           'navID' => _recentitems_navhelper_create_unique_nav_id($menu),
@@ -65,7 +68,7 @@ class CRM_Recentitems_Utils {
       if ($item['delete_url']) {
         _recentitems_civix_insert_navigation_menu($menu, 'recently_viewed/recently_viewed_' . $i, array(
           'label' => E::ts('Delete'),
-          'url' => ltrim($item['delete_url'], '/'),
+          'url' => CRM_Utils_System::relativeURL($base_url . $item['delete_url']),
           'name' => 'recently_viewed_' . $i . '_delete',
           'icon' => 'fa fa-trash',
           'navID' => _recentitems_navhelper_create_unique_nav_id($menu),
