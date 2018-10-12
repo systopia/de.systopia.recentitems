@@ -1,4 +1,4 @@
-# Recent items in navigation menu
+# Recently viewed items menu
 
 As the "Recently viewed" items are being displayed differently depending on the
 CMS used to run CiviCRM, and as the famous
