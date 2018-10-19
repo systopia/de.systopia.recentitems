@@ -13,7 +13,7 @@
 +-------------------------------------------------------*/
 
 (function($) {
-  $(document).ready(function() {
+  $(document).on('crmLoad', function(event) {
     var $recentMenuItem = $('#civicrm-menu').find('.menumain.crm-Recent');
 
     var recentItems = CRM.api3('RecentItems', 'get')
