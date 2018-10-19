@@ -30,7 +30,8 @@
   background-image: url(ICON_SPRITE_URL);
   margin: 2px 4px 0 0;
   text-indent: -10000px;
-  /* for accessibility reason, put the name of the type/subtype in the icon div (it will be hidden and replaced by the icon) */
+  /* for accessibility reason, put the name of the type/subtype in the icon div
+   * (it will be hidden and replaced by the icon). */
 }
 .menu-item .Group-icon {
   background-position: -16px 0;

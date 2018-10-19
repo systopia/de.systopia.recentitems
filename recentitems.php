@@ -187,19 +187,9 @@ function _recentitems_navhelper_get_max_nav_id($menu) {
 }
 
 /**
- * Hook implementation: Inject JS code adjusting summary view
- */
-function recentitems_civicrm_pageRun(&$page) {
-//  CRM_Core_Region::instance('page-header')->add(array(
-//    'type' => 'scriptUrl',
-//    'scriptUrl' => E::url('js/recentitems.js'),
-//  ));
-}
-
-/**
  * Implements hook_civicrm_buildAsset().
  *
- * Use hook_civicrm_buildAsset() to define the asset 'mycss'
+ * Use hook_civicrm_buildAsset() to define the asset 'recentitems.css'.
  * It locates the css template in the extension and the required image from core
  * and substitutes the image path into the css template returning the value via
  * the $content parameter.
@@ -208,22 +198,22 @@ function recentitems_civicrm_buildAsset($asset, $params, &$mimetype, &$content) 
   // Check for the asset of interest
   if ($asset !== 'recentitems.css') return;
 
-  // Find the path to our template css file
+  // Find the path to our template css file.
   $path = \Civi::resources()->getPath('de.systopia.recentitems', 'css/recentitems.css');
 
-  // Read in the template
+  // Read in the template.
   $raw = file_get_contents($path);
 
-  // Get the URL of the image we want from Core
-  // Note that the 'civicrm' string here is a special to refer to the installation location of the core files
+  // Get the URL of the image we want from Core. Note that the 'civicrm' string
+  // here is a special to refer to the installation location of the core files.
   $url = \Civi::resources()->getUrl('civicrm', 'i/item_sprites.png');
 
-  // Replace the LOGO_URL token in the file with the actual url
-  // Note that $content is passed by reference to this hook function
+  // Replace the ICON_SPRITE_URL token in the file with the actual url. Note
+  // that $content is passed by reference to this hook function.
   $content = str_replace('ICON_SPRITE_URL', $url, $raw);
 
-  // Set the mimetype appropriately for the type of content
-  // Note that $mimetype is passed by reference to this hook function
+  // Set the mimetype appropriately for the type of content. Note that $mimetype
+  // is passed by reference to this hook function.
   $mimetype = 'text/css';
 }
 
@@ -232,13 +222,14 @@ function recentitems_civicrm_buildAsset($asset, $params, &$mimetype, &$content) 
  */
 function recentitems_civicrm_coreResourceList(&$list, $region) {
   // To include the file without any processing we could use:
-  // CRM_Core_Resources::singleton()->addStyleFile('org.example.myextension', 'css/my_css.css');
+  // CRM_Core_Resources::singleton()->addStyleFile('de.systopia.recentitems', 'css/recentitems.css');
   // replace that with the following:
 
-  // use the asset_builder service to get the url of an asset labeled 'mycss'
+  // Use the asset_builder service to get the url of an asset labeled
+  // 'recentitems.css'.
   $url = \Civi::service('asset_builder')->getUrl('recentitems.css');
 
-  // load the processed style on the page
+  // Load the processed style on the page.
   CRM_Core_Resources::singleton()->addStyleUrl($url);
 
   // Add JavaScript file on every page.
@@ -257,14 +248,3 @@ function recentitems_civicrm_alterAPIPermissions($entity, $action, &$params, &$p
 {
   $permissions['recent_items']['get'] = array('access CiviCRM');
 }
-
-// --- Functions below this ship commented out. Uncomment as required. ---
-
-/**
- * Implements hook_civicrm_preProcess().
- *
- * @link http://wiki.civicrm.org/confluence/display/CRMDOC/hook_civicrm_preProcess
- *
-function recentitems_civicrm_preProcess($formName, &$form) {
-
-} // */

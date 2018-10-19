@@ -28,14 +28,15 @@ function civicrm_api3_recent_items_get($params) {
   CRM_Recentitems_Utils::buildSubMenu($navigations);
 
   $navigationString = '';
-  //skip children menu item if user don't have access to parent menu item
+  // Skip children menu item if the user does not have access to parent menu
+  // item.
   $skipMenuItems = array();
   foreach ($navigations as $key => $value) {
-    // Home is a special case
+    // Home is a special case.
     if ($value['attributes']['name'] != 'Home') {
       $name = CRM_Core_BAO_Navigation::getMenuName($value, $skipMenuItems);
       if ($name) {
-        //separator before
+        // separator before.
         if (isset($value['attributes']['separator']) && $value['attributes']['separator'] == 2) {
           $navigationString .= '<li class="menu-separator"></li>';
         }
@@ -46,8 +47,8 @@ function civicrm_api3_recent_items_get($params) {
     CRM_Core_BAO_Navigation::recurseNavigation($value, $navigationString, $skipMenuItems);
   }
 
-  // clean up - Need to remove empty <ul>'s, this happens when user don't have
-  // permission to access parent
+  // Clean up - Need to remove empty <ul>s, this happens when the user does not
+  // have permission to access parent.
   $navigationString = str_replace('<ul></ul></li>', '', $navigationString);
 
   return civicrm_api3_create_success($navigationString);

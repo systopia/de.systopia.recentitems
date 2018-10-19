@@ -21,7 +21,7 @@
         var $newMenuItem= $(result.values);
         $recentMenuItem.replaceWith($newMenuItem);
 
-        // ReInitialise navigation menu behavior for the new menu item.
+        // Re-initialise navigation menu behavior for the new menu item.
         // Copied from CiviCRM's /templates/CRM/common/navigation.js.tpl
         // TODO: This does not make the "Recent items" menu item part of the
         // menu, which causes some odd behavior with mouseOver on open sub
