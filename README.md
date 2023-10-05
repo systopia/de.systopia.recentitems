@@ -1,4 +1,5 @@
-# Recently viewed items menu
+# Recently viewed items menu (ABANDONED)
+# Please use https://github.com/civicrm/org.civicrm.recentmenu instead
 
 As the "Recently viewed" items are being displayed differently depending on the
 CMS used to run CiviCRM, and as the famous
